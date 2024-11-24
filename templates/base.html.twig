@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {% block stylesheets %}
+        {% endblock %}
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+
+        <!-- Tailwind (play CDN for development) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    <body class="flex flex-col justify-center items-center min-w-screen min-h-screen bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
+        <div id="page-loader" class="hidden flex justify-center items-center min-w-full min-h-full bg-black bg-opacity-50 fixed dark:bg-white dark:bg-opacity-30">
+            <div class="loader"></div>
+        </div>
+
+        <div id="alert-template-success" class="hidden">
+            {% include 'component/alert.html.twig' with {'type': 'success'} %}
+        </div>
+
+        <div id="alert-template-error" class="hidden">
+            {% include 'component/alert.html.twig' with {'type': 'error'} %}
+        </div>
+
+        <div id="message-container" class="fixed top-4 right-4"></div>
+
+        <main class="container flex flex-col wrap justify-center items-center">
+            {% block body %}{% endblock %}
+        </main>
+    </body>
+</html>

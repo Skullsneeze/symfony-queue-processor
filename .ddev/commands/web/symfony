@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Description: DDEV Alias for the symfony console command
+## Usage: symfony [flags] [args]
+## Example: ddev symfony cache:clear
+## ExeccRaw: true
+
+symfony console "$@"

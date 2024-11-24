@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony - RabbitMQ Message Queue app{% endblock %}
+
+{% block body %}
+
+    <div class="my-4">
+        <h1 class="text-5xl text-bold">Hi there!</h1>
+        <p class="mt-4">
+            This is a simple applications that lets you add some messages to the RabbitMQ message queue.
+        </p>
+    </div>
+    <div id="message-triggers-container" class="flex wrap flex-row items-center justify-center">
+        <div class="px-2 w-1/4 text-center">
+            <button data-post-action="{{ path('app_prioritized_message_add', {'priority': constant('\\App\\Contracts\\Message\\PrioritizedMessageInterface::PRIORITY_HIGH')}) }}"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Add High Priority Messages
+            </button>
+        </div>
+        <div class="px-2 w-1/4 text-center">
+            <button data-post-action="{{ path('app_prioritized_message_add', {'priority': constant('\\App\\Contracts\\Message\\PrioritizedMessageInterface::PRIORITY_LOW')}) }}"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Add Low Priority Messages
+            </button>
+        </div>
+        <div class="px-2 w-1/4 text-center">
+            <button data-post-action="{{ path('app_prioritized_message_add', {'priority': constant('\\App\\Controller\\PrioritizedMessageController::ADD_ALL_PRIORITY_PARAM')}) }}"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Add both Messages
+            </button>
+        </div>
+        <div class="px-2 w-1/4 text-center">
+            <button data-post-action="{{ path('app_prioritized_message_add', {'priority': 'invalid'}) }}"
+                    class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                Trigger an error (for testing purposes)
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
